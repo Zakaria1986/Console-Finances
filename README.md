@@ -102,4 +102,4 @@ I was tasked with analyzing the records to calculate each of the following:
 
 
 
-Thank you found the code interesting!
+Thank you and I hope you found the code interesting!

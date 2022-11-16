@@ -134,8 +134,6 @@ for (var i = 0; i < finances.length; i++) {
     // console.log(tempFigerHolder);
 }
 var avarage = tempFigerHolder / totalMonth;
-console.log(tempFigerHolder);
-
 
 /* * The greatest increase in profits (date and amount) over the entire period.
 
@@ -160,33 +158,23 @@ var min = Math.min(...newArray);
 for (var i = 0; i < finances.length; i++) {
     if (finances[i][1] === max) {
         maxValue = finances[i];
-        console.log("max value", maxValue);
-
     }
     else if (finances[i][1] === min) {
         minValue = finances[i];
-        //console.log(min);
         break;
     }
 }
 
-/*The greatest decrease in losses (date and amount) over the entire period.*/
-
-
-//console.log(min);
-
-
-
-
-
-
 
 /* Consoles below */
-console.log(" \t\tFinancial Analysis \n\t ----------------------------\n");
+console.log(" \n```text\n \t\tFinancial Analysis \n\t ----------------------------\n");
 console.log('\t\tTotal Months: ', totalMonth);
 
 //  Total of Prifits/losses:
 console.log('\t\tProfit/losses Total: $' + profitLossTotal);
 console.log('\t\tAverage  Change: $' + Math.floor(avarage));
 console.log('\t\tThe greatest increase in profits: ' + maxValue[0] + " ($" + maxValue[1] + ")");
-console.log('\t\tThe greatest increase in profits: ' + minValue[0] + " ($" + minValue[1] + ")"); 
+console.log('\t\tThe greatest increase in profits: ' + minValue[0] + " ($" + minValue[1] + ")" +
+    '\n  ```'
+
+); 
