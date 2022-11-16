@@ -130,7 +130,8 @@ var
     avgTotalSum = 0;
 
 for (var i = 0; i < finances.length; i++) {
-    tempFigerHolder = finances[i][1] - tempFigerHolder;
+
+    tempFigerHolder = (finances[i][1] > tempFigerHolder) ? finances[i][1] - tempFigerHolder : tempFigerHolder - finances[i][1];
     // console.log(tempFigerHolder);
 }
 var avarage = tempFigerHolder / totalMonth;
