@@ -127,47 +127,71 @@ for (var arrayIndex = 0; arrayIndex < finances.length; arrayIndex++) {
 
 var
     tempfigureHolder,
-    posArray = [],
     negArray = [],
-    avgTotalSum = 0;
+    posArray = []
+    ;
+
 // Array seperating the positive and negative values
 for (var i = 0; i < finances.length; i++) {
+
     if (finances[i][1] < 0) {
         negArray.push(finances[i][1]);
     } else {
         posArray.push(finances[i][1]);
     }
 }
+// console.log(posArray + "\n\n");
+
+// Looping throught the pogative array to find the differences
+
+// Positive value variables
+var
+    posDiffTempPlaceHolder,
+    posDiff = [],
+    posTotal = 0;
 
 for (var i = 0; i < posArray.length; i++) {
+    //  * Line below code checking to if there is next incremental item if false then return 0
+    var nextTotal = (posArray[i + 1] || 0) && posArray[i + 1];
+    posDiffTempPlaceHolder = (posArray[i] > nextTotal) ? posArray[i] - nextTotal : nextTotal - posArray[i];
+    posDiff.push(posDiffTempPlaceHolder);
+}
+posDiff.pop();
+for (var i = 0; i < posDiff.length; i++) {
+    posTotal += posDiff[i];
+}
+// console.log("Pos array " + posArray);
+// console.log(posDiffTempPlaceHolder);
+// console.log(posDiff)
+// console.log(posTotal);
+
+// Negative value variables
+var
+    negDiffTempPlaceHolder,
+    negDiff = [],
+    negTotal = 0;
+
+for (var i = 0; i < negArray.length; i++) {
+    //  * Line below code checking to if there is next incremental item if false then return 0
+    var nextTotal = (negArray[i + 1] || 0) && negArray[i + 1];
+    negDiffTempPlaceHolder = (negArray[i] > nextTotal) ? negArray[i] - nextTotal : nextTotal - negArray[i];
+    negDiff.push(negDiffTempPlaceHolder);
 
 }
 
-console.log("negative array", negArray);
-console.log("positive array", posArray);
-posArray.pop();
-// console.log(posArray);
-
-var posTotal = 0;
-var negTotal = 0;
-
-for (var i = 0; i < posArray.length; i++) {
-
-    posTotal += posArray[i]
+negDiff.pop();
+for (var i = 0; i < negDiff.length; i++) {
+    negTotal += negDiff[i];
 }
 
-var totalSumOfNegArray = negArray.forEach(item => {
-    negTotal += item;
-});
 
+// Total average
+avgTotalSum = 0;
 avgTotalSum = posTotal - negTotal;
-console.log(avgTotalSum / totalMonth);
-
-
 var avarage = avgTotalSum / totalMonth;
 
 /* * The greatest increase in profits (date and amount) over the entire period.
-
+ 
 * The greatest increase in profits (date and amount) over the entire period.
     * Find the highest number 
     * and then get console both date and the value 
