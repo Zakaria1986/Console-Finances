@@ -130,48 +130,23 @@ var
     posArray = [],
     negArray = [],
     avgTotalSum = 0;
-
+// Array seperating the positive and negative values
 for (var i = 0; i < finances.length; i++) {
-
-    //  * Line below code checking to if there is next incremental item if false then return 0
-    var nextTotal = (finances[i + 1] || 0) && finances[i + 1][1];
-    // Testing console.log((finances[i + 1] || 0) && finances[i + 1][1] ? 'true' : 'false');
-
-    //debugging to see if code would ignore the negative numbers
-    // if (finances[i][1] < 0) {
-    //     console.log(finances[i][1]);
-    // }
-
     if (finances[i][1] < 0) {
-        if (finances[i][1] > nextTotal) {
-            tempfigureHolder = finances[i][1] - nextTotal;
-            negArray.push(tempfigureHolder);
-
-        }
-        else {
-            tempfigureHolder = nextTotal - finances[i][1];
-            posArray.push(tempfigureHolder);
-
-        }
+        negArray.push(finances[i][1]);
     } else {
-        if (finances[i][1] > nextTotal) {
-            tempfigureHolder = finances[i][1] - nextTotal;
-            posArray.push(tempfigureHolder);
-        }
-        else {
-            tempfigureHolder = nextTotal - finances[i][1];
-            posArray.push(tempfigureHolder);
-            // console.log(tempfigureHolder);
-        }
+        posArray.push(finances[i][1]);
     }
+}
 
+for (var i = 0; i < posArray.length; i++) {
 
 }
 
-console.log("negative array", posArray);
+console.log("negative array", negArray);
+console.log("positive array", posArray);
 posArray.pop();
 // console.log(posArray);
-
 
 var posTotal = 0;
 var negTotal = 0;
