@@ -49,16 +49,82 @@ I was tasked with analyzing the records to calculate each of the following:
         - Then find the average by deviding the tital with number of month i.e.
             total/number of month
         
-        var
-            tempFigerHolder = 0,
-            avgTotalSum = 0;
+        
 
-        for (var i = 0; i < finances.length; i++) {
-            tempFigerHolder = finances[i][1] - tempFigerHolder;
-            // console.log(tempFigerHolder);
-        }
-        var avarage = tempFigerHolder / totalMonth;
-        console.log(tempFigerHolder);
+var
+
+    tempfigureHolder,
+    negArray = [],
+    posArray = []
+    ;
+
+// Array seperating the positive and negative values
+for (var i = 0; i < finances.length; i++) {
+
+    if (finances[i][1] < 0) {
+        negArray.push(finances[i][1]);
+    } else {
+        posArray.push(finances[i][1]);
+    }
+
+}
+// console.log(posArray + "\n\n"); 
+
+// Looping throught the pogative array to find the differences
+
+// Positive value variables
+var
+
+    posDiffTempPlaceHolder,
+    posDiff = [],
+    posTotal = 0;
+
+for (var i = 0; i < posArray.length; i++) {
+
+    //  * Line below code checking to if there is next incremental item if false then return 0
+    var nextTotal = (posArray[i + 1] || 0) && posArray[i + 1];
+    posDiffTempPlaceHolder = (posArray[i] > nextTotal) ? posArray[i] - nextTotal : nextTotal - posArray[i];
+    posDiff.push(posDiffTempPlaceHolder);
+
+}
+posDiff.pop(); 
+for (var i = 0; i < posDiff.length; i++) {
+
+    posTotal += posDiff[i];
+
+}
+// console.log("Pos array " + posArray); 
+// console.log(posDiffTempPlaceHolder); 
+// console.log(posDiff)
+// console.log(posTotal); 
+
+// Negative value variables
+var
+
+    negDiffTempPlaceHolder,
+    negDiff = [],
+    negTotal = 0;
+
+for (var i = 0; i < negArray.length; i++) {
+
+    //  * Line below code checking to if there is next incremental item if false then return 0
+    var nextTotal = (negArray[i + 1] || 0) && negArray[i + 1];
+    negDiffTempPlaceHolder = (negArray[i] > nextTotal) ? negArray[i] - nextTotal : nextTotal - negArray[i];
+    negDiff.push(negDiffTempPlaceHolder);
+
+}
+
+negDiff.pop(); 
+for (var i = 0; i < negDiff.length; i++) {
+
+    negTotal += negDiff[i];
+
+}
+
+// Total average
+avgTotalSum = 0; 
+avgTotalSum = posTotal - negTotal; 
+var avarage = avgTotalSum / totalMonth; 
 
  - The greatest increase in profits (date and amount) over the entire period.
  
