@@ -2,6 +2,8 @@
 
 Objective of this project is to write a block of code that would dynamically calculate and analyzes the records of an array of data. see the screen shot below:
 
+** See live page at: https://zakaria1986.github.io/Console-Finances/
+
 
 
 ![alt text](/img/scr1.png)
