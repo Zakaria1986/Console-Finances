@@ -126,15 +126,70 @@ for (var arrayIndex = 0; arrayIndex < finances.length; arrayIndex++) {
 */
 
 var
-    tempFigerHolder = 0,
+    tempfigureHolder,
+    posArray = [],
+    negArray = [],
     avgTotalSum = 0;
 
 for (var i = 0; i < finances.length; i++) {
 
-    tempFigerHolder = (finances[i][1] > tempFigerHolder) ? finances[i][1] - tempFigerHolder : tempFigerHolder - finances[i][1];
-    // console.log(tempFigerHolder);
+    //  * Line below code checking to if there is next incremental item if false then return 0
+    var nextTotal = (finances[i + 1] || 0) && finances[i + 1][1];
+    // Testing console.log((finances[i + 1] || 0) && finances[i + 1][1] ? 'true' : 'false');
+
+    //debugging to see if code would ignore the negative numbers
+    // if (finances[i][1] < 0) {
+    //     console.log(finances[i][1]);
+    // }
+
+    if (finances[i][1] < 0) {
+        if (finances[i][1] > nextTotal) {
+            tempfigureHolder = finances[i][1] - nextTotal;
+            negArray.push(tempfigureHolder);
+
+        }
+        else {
+            tempfigureHolder = nextTotal - finances[i][1];
+            posArray.push(tempfigureHolder);
+
+        }
+    } else {
+        if (finances[i][1] > nextTotal) {
+            tempfigureHolder = finances[i][1] - nextTotal;
+            posArray.push(tempfigureHolder);
+        }
+        else {
+            tempfigureHolder = nextTotal - finances[i][1];
+            posArray.push(tempfigureHolder);
+            // console.log(tempfigureHolder);
+        }
+    }
+
+
 }
-var avarage = tempFigerHolder / totalMonth;
+
+console.log("negative array", posArray);
+posArray.pop();
+// console.log(posArray);
+
+
+var posTotal = 0;
+var negTotal = 0;
+
+for (var i = 0; i < posArray.length; i++) {
+
+    posTotal += posArray[i]
+}
+
+var totalSumOfNegArray = negArray.forEach(item => {
+    negTotal += item;
+});
+
+avgTotalSum = posTotal - negTotal;
+console.log(avgTotalSum / totalMonth);
+
+
+var avarage = avgTotalSum / totalMonth;
 
 /* * The greatest increase in profits (date and amount) over the entire period.
 
@@ -143,7 +198,7 @@ var avarage = tempFigerHolder / totalMonth;
     * and then get console both date and the value 
 */
 // var testing =[1,2,3,4,5,6,71; 
-newArray = [];
+var newArray = [];
 var increased = 0;
 var maxValue = [];
 var minValue = "";
@@ -175,7 +230,7 @@ console.log('\t\tTotal Months: ', totalMonth);
 console.log('\t\tProfit/losses Total: $' + profitLossTotal);
 console.log('\t\tAverage  Change: $' + Math.floor(avarage));
 console.log('\t\tThe greatest increase in profits: ' + maxValue[0] + " ($" + maxValue[1] + ")");
-console.log('\t\tThe greatest increase in profits: ' + minValue[0] + " ($" + minValue[1] + ")" +
+console.log('\t\tThe greatest Decrease in profits: ' + minValue[0] + " ($" + minValue[1] + ")" +
     '\n  ```'
 
 ); 
